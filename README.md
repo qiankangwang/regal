@@ -29,12 +29,31 @@ An AI-powered legal operations platform that streamlines depositions through rea
 
 ## Getting Started
 
-```bash
-# Install dependencies
-npm install
+Regal has two processes: a Vite dev server for the React frontend and a small Express service that proxies audio to [Deepgram](https://deepgram.com/) for real-time transcription. Run both side by side.
 
-# Start the development server
-npm run dev
+### 1. Frontend
+
+```bash
+npm install
+npm run dev          # http://localhost:5173 by default
+```
+
+### 2. Transcription backend
+
+```bash
+cd server
+npm install
+cp .env.example .env
+$EDITOR .env         # set DEEPGRAM_API_KEY=...
+node server.js       # listens on http://localhost:3001
+```
+
+The frontend posts audio chunks to the backend's `POST /api/transcribe` endpoint; the backend forwards them to Deepgram with your API key and returns the transcript. Without `DEEPGRAM_API_KEY` set, transcription requests will fail but the rest of the UI still works.
+
+### Production build
+
+```bash
+npm run build        # outputs to dist/
 ```
 
 ## Project Structure
