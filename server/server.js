@@ -5,7 +5,7 @@ const multer = require("multer");
 const cors = require("cors");
 
 const app = express();
-const upload = multer(); // memory storage
+const upload = multer({ limits: { fileSize: 25 * 1024 * 1024, files: 1 } }); // memory storage, 25MB cap
 
 app.use(cors());
 app.use(express.json());
@@ -49,13 +49,13 @@ app.post("/api/transcribe", upload.single("audio"), async (req, res) => {
 
     if (!r.ok) {
       console.error("Deepgram error:", data);
-      return res.status(r.status).json({ error: "Deepgram request failed", deepgram: data });
+      return res.status(r.status).json({ error: "Deepgram request failed" });
     }
 
     res.json({ utterances: data?.results?.utterances ?? [] });
   } catch (e) {
     console.error("Transcribe error:", e);
-    res.status(500).json({ error: String(e?.message || e) });
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 

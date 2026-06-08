@@ -8,7 +8,6 @@ import { useMediaQuery } from "./hooks/useMediaQuery";
 
 /* -------------------- App -------------------- */
 
-export default function App() {
 const STREAM_LINES: Array<{ speaker: Speaker; text: string }> = [
     { speaker: "LAWYER 1", text: "Your Honor, for the record, we object to the characterization of the timeline." },
     { speaker: "JUDGE", text: "Noted. Counsel, keep your questions focused." },
@@ -26,6 +25,8 @@ const STREAM_LINES: Array<{ speaker: Speaker; text: string }> = [
     { speaker: "WITNESS", text: "A small diner—no, I don't remember the name." },
     { speaker: "JUDGE", text: "The record will reflect the witness's answer." },
 ];
+
+export default function App() {
 
     const isWide = useMediaQuery("(min-width: 980px)");
 
