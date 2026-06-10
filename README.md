@@ -4,10 +4,6 @@
 
 An AI-powered legal operations platform that streamlines depositions through real-time transcription, intelligent assistance, and faster case navigation.
 
-## Live Demo
-
-**[qiankangwang.github.io/regal](https://qiankangwang.github.io/regal/)**
-
 ## Demo
 
 <p align="center">
